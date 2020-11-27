@@ -117,6 +117,7 @@ namespace _3DMapTool
             obj.AddComponent("Mesh", mesh);
 
             treeViewObject.Nodes[0].Nodes.Add(obj.name);
+            treeViewObject.ExpandAll();
         }
 
         private void treeViewObject_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)

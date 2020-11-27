@@ -28,37 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Scene");
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("StaticMesh");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("DynamicMesh");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Mesh", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Scene");
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.leftPanel = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.HierarchyTabControl = new System.Windows.Forms.TabControl();
-            this.hierarchyPage = new System.Windows.Forms.TabPage();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.modeTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.splitter2 = new System.Windows.Forms.Splitter();
-            this.rightPanel = new System.Windows.Forms.Panel();
-            this.splitter3 = new System.Windows.Forms.Splitter();
-            this.settingPanel = new System.Windows.Forms.Panel();
+            this.renderPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.splitter4 = new System.Windows.Forms.Splitter();
+            this.splitter3 = new System.Windows.Forms.Splitter();
+            this.rightPanel = new System.Windows.Forms.Panel();
             this.InfoTabControl = new System.Windows.Forms.TabControl();
             this.infoPage = new System.Windows.Forms.TabPage();
-            this.renderPanel = new System.Windows.Forms.Panel();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeViewObject = new System.Windows.Forms.TreeView();
-            this.panelMeshBottom = new System.Windows.Forms.Panel();
-            this.treeViewMesh = new System.Windows.Forms.TreeView();
-            this.buttonMesh = new System.Windows.Forms.Button();
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -76,17 +58,28 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.splitter4 = new System.Windows.Forms.Splitter();
+            this.settingPanel = new System.Windows.Forms.Panel();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.leftPanel = new System.Windows.Forms.Panel();
+            this.modeTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.treeViewMesh = new System.Windows.Forms.TreeView();
+            this.panelMeshBottom = new System.Windows.Forms.Panel();
+            this.buttonMesh = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.HierarchyTabControl = new System.Windows.Forms.TabControl();
+            this.hierarchyPage = new System.Windows.Forms.TabPage();
+            this.treeViewObject = new System.Windows.Forms.TreeView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
-            this.leftPanel.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.HierarchyTabControl.SuspendLayout();
-            this.hierarchyPage.SuspendLayout();
-            this.modeTabControl.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.rightPanel.SuspendLayout();
             this.InfoTabControl.SuspendLayout();
             this.infoPage.SuspendLayout();
-            this.panelMeshBottom.SuspendLayout();
             this.groupBoxInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
@@ -98,6 +91,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.leftPanel.SuspendLayout();
+            this.modeTabControl.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panelMeshBottom.SuspendLayout();
+            this.HierarchyTabControl.SuspendLayout();
+            this.hierarchyPage.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -112,123 +112,36 @@
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1395, 561);
+            this.mainPanel.Size = new System.Drawing.Size(1370, 561);
             this.mainPanel.TabIndex = 0;
             // 
-            // leftPanel
+            // renderPanel
             // 
-            this.leftPanel.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.leftPanel.Controls.Add(this.modeTabControl);
-            this.leftPanel.Controls.Add(this.splitter1);
-            this.leftPanel.Controls.Add(this.HierarchyTabControl);
-            this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.leftPanel.Location = new System.Drawing.Point(0, 24);
-            this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(342, 537);
-            this.leftPanel.TabIndex = 3;
+            this.renderPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.renderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.renderPanel.Location = new System.Drawing.Point(352, 24);
+            this.renderPanel.Name = "renderPanel";
+            this.renderPanel.Size = new System.Drawing.Size(690, 515);
+            this.renderPanel.TabIndex = 9;
             // 
-            // menuStrip1
+            // statusStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1395, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.statusStrip1.Location = new System.Drawing.Point(352, 539);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(690, 22);
+            this.statusStrip1.TabIndex = 8;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // HierarchyTabControl
+            // splitter3
             // 
-            this.HierarchyTabControl.Controls.Add(this.hierarchyPage);
-            this.HierarchyTabControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.HierarchyTabControl.Location = new System.Drawing.Point(0, 0);
-            this.HierarchyTabControl.Name = "HierarchyTabControl";
-            this.HierarchyTabControl.SelectedIndex = 0;
-            this.HierarchyTabControl.Size = new System.Drawing.Size(342, 242);
-            this.HierarchyTabControl.TabIndex = 2;
-            // 
-            // hierarchyPage
-            // 
-            this.hierarchyPage.Controls.Add(this.treeViewObject);
-            this.hierarchyPage.Location = new System.Drawing.Point(4, 22);
-            this.hierarchyPage.Name = "hierarchyPage";
-            this.hierarchyPage.Padding = new System.Windows.Forms.Padding(3);
-            this.hierarchyPage.Size = new System.Drawing.Size(334, 216);
-            this.hierarchyPage.TabIndex = 0;
-            this.hierarchyPage.Text = "Hierarchy";
-            this.hierarchyPage.UseVisualStyleBackColor = true;
-            // 
-            // splitter1
-            // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 242);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(342, 10);
-            this.splitter1.TabIndex = 3;
-            this.splitter1.TabStop = false;
-            // 
-            // modeTabControl
-            // 
-            this.modeTabControl.Controls.Add(this.tabPage1);
-            this.modeTabControl.Controls.Add(this.tabPage2);
-            this.modeTabControl.Controls.Add(this.tabPage3);
-            this.modeTabControl.Controls.Add(this.tabPage4);
-            this.modeTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.modeTabControl.Location = new System.Drawing.Point(0, 252);
-            this.modeTabControl.Name = "modeTabControl";
-            this.modeTabControl.SelectedIndex = 0;
-            this.modeTabControl.Size = new System.Drawing.Size(342, 285);
-            this.modeTabControl.TabIndex = 4;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(334, 259);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Terrain";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.treeViewMesh);
-            this.tabPage2.Controls.Add(this.panelMeshBottom);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(334, 259);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Mesh";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(226, 341);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Camera";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(226, 341);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Effect";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // splitter2
-            // 
-            this.splitter2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitter2.Location = new System.Drawing.Point(342, 24);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(10, 537);
-            this.splitter2.TabIndex = 5;
-            this.splitter2.TabStop = false;
+            this.splitter3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter3.Location = new System.Drawing.Point(1042, 24);
+            this.splitter3.Name = "splitter3";
+            this.splitter3.Size = new System.Drawing.Size(10, 537);
+            this.splitter3.TabIndex = 7;
+            this.splitter3.TabStop = false;
             // 
             // rightPanel
             // 
@@ -237,48 +150,10 @@
             this.rightPanel.Controls.Add(this.splitter4);
             this.rightPanel.Controls.Add(this.settingPanel);
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightPanel.Location = new System.Drawing.Point(1077, 24);
+            this.rightPanel.Location = new System.Drawing.Point(1052, 24);
             this.rightPanel.Name = "rightPanel";
             this.rightPanel.Size = new System.Drawing.Size(318, 537);
             this.rightPanel.TabIndex = 6;
-            // 
-            // splitter3
-            // 
-            this.splitter3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter3.Location = new System.Drawing.Point(1067, 24);
-            this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(10, 537);
-            this.splitter3.TabIndex = 7;
-            this.splitter3.TabStop = false;
-            // 
-            // settingPanel
-            // 
-            this.settingPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.settingPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.settingPanel.Location = new System.Drawing.Point(0, 0);
-            this.settingPanel.Name = "settingPanel";
-            this.settingPanel.Size = new System.Drawing.Size(318, 126);
-            this.settingPanel.TabIndex = 0;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.statusStrip1.Location = new System.Drawing.Point(352, 539);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(715, 22);
-            this.statusStrip1.TabIndex = 8;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // splitter4
-            // 
-            this.splitter4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitter4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter4.Location = new System.Drawing.Point(0, 126);
-            this.splitter4.Name = "splitter4";
-            this.splitter4.Size = new System.Drawing.Size(318, 10);
-            this.splitter4.TabIndex = 1;
-            this.splitter4.TabStop = false;
             // 
             // InfoTabControl
             // 
@@ -300,74 +175,6 @@
             this.infoPage.TabIndex = 0;
             this.infoPage.Text = "Information";
             this.infoPage.UseVisualStyleBackColor = true;
-            // 
-            // renderPanel
-            // 
-            this.renderPanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.renderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.renderPanel.Location = new System.Drawing.Point(352, 24);
-            this.renderPanel.Name = "renderPanel";
-            this.renderPanel.Size = new System.Drawing.Size(715, 515);
-            this.renderPanel.TabIndex = 9;
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // treeViewObject
-            // 
-            this.treeViewObject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewObject.Location = new System.Drawing.Point(3, 3);
-            this.treeViewObject.Name = "treeViewObject";
-            treeNode4.Name = "nodeScene";
-            treeNode4.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode4.Text = "Scene";
-            this.treeViewObject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            this.treeViewObject.Size = new System.Drawing.Size(328, 210);
-            this.treeViewObject.TabIndex = 0;
-            this.treeViewObject.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewObject_NodeMouseClick);
-            // 
-            // panelMeshBottom
-            // 
-            this.panelMeshBottom.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.panelMeshBottom.Controls.Add(this.buttonMesh);
-            this.panelMeshBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelMeshBottom.Location = new System.Drawing.Point(3, 209);
-            this.panelMeshBottom.Name = "panelMeshBottom";
-            this.panelMeshBottom.Size = new System.Drawing.Size(328, 47);
-            this.panelMeshBottom.TabIndex = 0;
-            // 
-            // treeViewMesh
-            // 
-            this.treeViewMesh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewMesh.Location = new System.Drawing.Point(3, 3);
-            this.treeViewMesh.Name = "treeViewMesh";
-            treeNode1.Name = "nodeStaticMesh";
-            treeNode1.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode1.Text = "StaticMesh";
-            treeNode2.Name = "nodeDynamicMesh";
-            treeNode2.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode2.Text = "DynamicMesh";
-            treeNode3.Name = "nodeMesh";
-            treeNode3.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode3.Text = "Mesh";
-            this.treeViewMesh.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
-            this.treeViewMesh.Size = new System.Drawing.Size(328, 206);
-            this.treeViewMesh.TabIndex = 2;
-            // 
-            // buttonMesh
-            // 
-            this.buttonMesh.Location = new System.Drawing.Point(239, 9);
-            this.buttonMesh.Name = "buttonMesh";
-            this.buttonMesh.Size = new System.Drawing.Size(75, 23);
-            this.buttonMesh.TabIndex = 0;
-            this.buttonMesh.Text = "추가";
-            this.buttonMesh.UseVisualStyleBackColor = true;
-            this.buttonMesh.Click += new System.EventHandler(this.buttonMesh_Click);
             // 
             // groupBoxInfo
             // 
@@ -458,7 +265,7 @@
             0,
             0,
             0});
-            this.numericUpDown9.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown9.ValueChanged += new System.EventHandler(this.numericUpDown9_ValueChanged);
             // 
             // numericUpDown8
             // 
@@ -482,7 +289,7 @@
             0,
             0,
             0});
-            this.numericUpDown8.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown8.ValueChanged += new System.EventHandler(this.numericUpDown8_ValueChanged);
             // 
             // numericUpDown7
             // 
@@ -506,7 +313,7 @@
             0,
             0,
             0});
-            this.numericUpDown7.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown7.ValueChanged += new System.EventHandler(this.numericUpDown7_ValueChanged);
             // 
             // numericUpDown6
             // 
@@ -525,7 +332,7 @@
             this.numericUpDown6.Name = "numericUpDown6";
             this.numericUpDown6.Size = new System.Drawing.Size(65, 21);
             this.numericUpDown6.TabIndex = 8;
-            this.numericUpDown6.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown6.ValueChanged += new System.EventHandler(this.numericUpDown6_ValueChanged);
             // 
             // numericUpDown5
             // 
@@ -544,7 +351,7 @@
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(65, 21);
             this.numericUpDown5.TabIndex = 7;
-            this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
             // 
             // numericUpDown4
             // 
@@ -563,7 +370,7 @@
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(65, 21);
             this.numericUpDown4.TabIndex = 6;
-            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
             // 
             // numericUpDown3
             // 
@@ -582,7 +389,7 @@
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(65, 21);
             this.numericUpDown3.TabIndex = 5;
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
             // numericUpDown2
             // 
@@ -601,7 +408,7 @@
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(65, 21);
             this.numericUpDown2.TabIndex = 4;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // numericUpDown1
             // 
@@ -653,28 +460,213 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Position";
             // 
+            // splitter4
+            // 
+            this.splitter4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitter4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter4.Location = new System.Drawing.Point(0, 126);
+            this.splitter4.Name = "splitter4";
+            this.splitter4.Size = new System.Drawing.Size(318, 10);
+            this.splitter4.TabIndex = 1;
+            this.splitter4.TabStop = false;
+            // 
+            // settingPanel
+            // 
+            this.settingPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.settingPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.settingPanel.Location = new System.Drawing.Point(0, 0);
+            this.settingPanel.Name = "settingPanel";
+            this.settingPanel.Size = new System.Drawing.Size(318, 126);
+            this.settingPanel.TabIndex = 0;
+            // 
+            // splitter2
+            // 
+            this.splitter2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitter2.Location = new System.Drawing.Point(342, 24);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(10, 537);
+            this.splitter2.TabIndex = 5;
+            this.splitter2.TabStop = false;
+            // 
+            // leftPanel
+            // 
+            this.leftPanel.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.leftPanel.Controls.Add(this.modeTabControl);
+            this.leftPanel.Controls.Add(this.splitter1);
+            this.leftPanel.Controls.Add(this.HierarchyTabControl);
+            this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftPanel.Location = new System.Drawing.Point(0, 24);
+            this.leftPanel.Name = "leftPanel";
+            this.leftPanel.Size = new System.Drawing.Size(342, 537);
+            this.leftPanel.TabIndex = 3;
+            // 
+            // modeTabControl
+            // 
+            this.modeTabControl.Controls.Add(this.tabPage1);
+            this.modeTabControl.Controls.Add(this.tabPage2);
+            this.modeTabControl.Controls.Add(this.tabPage3);
+            this.modeTabControl.Controls.Add(this.tabPage4);
+            this.modeTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modeTabControl.Location = new System.Drawing.Point(0, 252);
+            this.modeTabControl.Name = "modeTabControl";
+            this.modeTabControl.SelectedIndex = 0;
+            this.modeTabControl.Size = new System.Drawing.Size(342, 285);
+            this.modeTabControl.TabIndex = 4;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(334, 259);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Terrain";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.treeViewMesh);
+            this.tabPage2.Controls.Add(this.panelMeshBottom);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(334, 259);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Mesh";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // treeViewMesh
+            // 
+            this.treeViewMesh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewMesh.Location = new System.Drawing.Point(3, 3);
+            this.treeViewMesh.Name = "treeViewMesh";
+            treeNode1.Name = "nodeStaticMesh";
+            treeNode1.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode1.Text = "StaticMesh";
+            treeNode2.Name = "nodeDynamicMesh";
+            treeNode2.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode2.Text = "DynamicMesh";
+            treeNode3.Name = "nodeMesh";
+            treeNode3.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode3.Text = "Mesh";
+            this.treeViewMesh.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode3});
+            this.treeViewMesh.Size = new System.Drawing.Size(328, 206);
+            this.treeViewMesh.TabIndex = 2;
+            // 
+            // panelMeshBottom
+            // 
+            this.panelMeshBottom.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panelMeshBottom.Controls.Add(this.buttonMesh);
+            this.panelMeshBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelMeshBottom.Location = new System.Drawing.Point(3, 209);
+            this.panelMeshBottom.Name = "panelMeshBottom";
+            this.panelMeshBottom.Size = new System.Drawing.Size(328, 47);
+            this.panelMeshBottom.TabIndex = 0;
+            // 
+            // buttonMesh
+            // 
+            this.buttonMesh.Location = new System.Drawing.Point(239, 9);
+            this.buttonMesh.Name = "buttonMesh";
+            this.buttonMesh.Size = new System.Drawing.Size(75, 23);
+            this.buttonMesh.TabIndex = 0;
+            this.buttonMesh.Text = "추가";
+            this.buttonMesh.UseVisualStyleBackColor = true;
+            this.buttonMesh.Click += new System.EventHandler(this.buttonMesh_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(334, 259);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Camera";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(334, 259);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Effect";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter1.Location = new System.Drawing.Point(0, 242);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(342, 10);
+            this.splitter1.TabIndex = 3;
+            this.splitter1.TabStop = false;
+            // 
+            // HierarchyTabControl
+            // 
+            this.HierarchyTabControl.Controls.Add(this.hierarchyPage);
+            this.HierarchyTabControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.HierarchyTabControl.Location = new System.Drawing.Point(0, 0);
+            this.HierarchyTabControl.Name = "HierarchyTabControl";
+            this.HierarchyTabControl.SelectedIndex = 0;
+            this.HierarchyTabControl.Size = new System.Drawing.Size(342, 242);
+            this.HierarchyTabControl.TabIndex = 2;
+            // 
+            // hierarchyPage
+            // 
+            this.hierarchyPage.Controls.Add(this.treeViewObject);
+            this.hierarchyPage.Location = new System.Drawing.Point(4, 22);
+            this.hierarchyPage.Name = "hierarchyPage";
+            this.hierarchyPage.Padding = new System.Windows.Forms.Padding(3);
+            this.hierarchyPage.Size = new System.Drawing.Size(334, 216);
+            this.hierarchyPage.TabIndex = 0;
+            this.hierarchyPage.Text = "Hierarchy";
+            this.hierarchyPage.UseVisualStyleBackColor = true;
+            // 
+            // treeViewObject
+            // 
+            this.treeViewObject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewObject.Location = new System.Drawing.Point(3, 3);
+            this.treeViewObject.Name = "treeViewObject";
+            treeNode4.Name = "nodeScene";
+            treeNode4.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode4.Text = "Scene";
+            this.treeViewObject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+            this.treeViewObject.Size = new System.Drawing.Size(328, 210);
+            this.treeViewObject.TabIndex = 0;
+            this.treeViewObject.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewObject_NodeMouseClick);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1370, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1395, 561);
+            this.ClientSize = new System.Drawing.Size(1370, 561);
             this.Controls.Add(this.mainPanel);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "박경훈 맵툴";
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
-            this.leftPanel.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.HierarchyTabControl.ResumeLayout(false);
-            this.hierarchyPage.ResumeLayout(false);
-            this.modeTabControl.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.rightPanel.ResumeLayout(false);
             this.InfoTabControl.ResumeLayout(false);
             this.infoPage.ResumeLayout(false);
-            this.panelMeshBottom.ResumeLayout(false);
             this.groupBoxInfo.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -687,6 +679,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.leftPanel.ResumeLayout(false);
+            this.modeTabControl.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.panelMeshBottom.ResumeLayout(false);
+            this.HierarchyTabControl.ResumeLayout(false);
+            this.hierarchyPage.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
