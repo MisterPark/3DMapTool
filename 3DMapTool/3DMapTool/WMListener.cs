@@ -48,7 +48,6 @@ namespace _3DMapTool
             {
 
                 case WM_ACTIVATEAPP:
-
                     break;
                 case WM_LBUTTONDOWN:
                     Input.Instance.mouse[(int)MouseInputType.LButtonDown] = true;
@@ -87,7 +86,6 @@ namespace _3DMapTool
 
                     break;
             }
-
 
             base.WndProc(ref m);
 

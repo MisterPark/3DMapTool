@@ -11,7 +11,7 @@ namespace _3DMapTool
     class RenderManager
     {
         private static RenderManager instance = new RenderManager();
-        private Device device = null;
+        public Device device = null;
         private Sprite sprite = null;
         private Line line = null;
         private RenderManager()
@@ -27,11 +27,21 @@ namespace _3DMapTool
 
         public static void InitializeDevice(Control target)
         {
+            
             PresentParameters pp = new PresentParameters();
+            pp.BackBufferWidth = 800;
+            pp.BackBufferHeight = 600;
+            pp.BackBufferFormat = Format.A8R8G8B8;
+            pp.BackBufferCount = 1;
+
+            pp.MultiSample = MultiSampleType.None;
+            pp.MultiSampleQuality = 0;
+
             pp.Windowed = true;
             pp.SwapEffect = SwapEffect.Discard;
-            //pp.EnableAutoDepthStencil = true;
-            //pp.AutoDepthStencilFormat = DepthFormat.D16;
+            pp.EnableAutoDepthStencil = true;
+            pp.AutoDepthStencilFormat = DepthFormat.D24S8;
+            pp.FullScreenRefreshRateInHz = 0;
             instance.device = new Device(0, DeviceType.Hardware, target, CreateFlags.HardwareVertexProcessing, pp);
 
             instance.sprite = new Sprite(instance.device);
@@ -40,7 +50,7 @@ namespace _3DMapTool
 
         public static void Clear()
         {
-            instance.device.Clear(ClearFlags.Target, Color.Blue, 0.0f, 0);
+            instance.device.Clear(ClearFlags.Target | ClearFlags.ZBuffer | ClearFlags.Stencil, Color.Blue, 1.0f, 0);
             instance.device.BeginScene();
         }
         public static void Present(Control target)
