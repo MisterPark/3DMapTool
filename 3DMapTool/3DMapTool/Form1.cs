@@ -18,6 +18,7 @@ namespace _3DMapTool
 
         public static Panel g_renderPanel = null;
         GameObject selectedObject = null;
+        bool selectedObjectChanged = false;
 
         //=======================================
         // 생성자
@@ -86,6 +87,7 @@ namespace _3DMapTool
         {
             if (selectedObject == null) return;
 
+            selectedObjectChanged = true;
             groupBoxInfo.Text = selectedObject.name;
 
             numericUpDown1.Value = (decimal)selectedObject.transform.position.X;
@@ -97,6 +99,7 @@ namespace _3DMapTool
             numericUpDown7.Value = (decimal)selectedObject.transform.scale.X;
             numericUpDown8.Value = (decimal)selectedObject.transform.scale.Y;
             numericUpDown9.Value = (decimal)selectedObject.transform.scale.Z;
+            
         }
 
         private void buttonMesh_Click(object sender, EventArgs e)
@@ -124,8 +127,8 @@ namespace _3DMapTool
             GameObject obj;
             if(ObjectManager.Instance.objectList.TryGetValue(key, out obj))
             {
+                
                 selectedObject = obj;
-
                 SetGameObjectInfo();
             }
             
@@ -137,13 +140,53 @@ namespace _3DMapTool
             if (selectedObject == null) return;
 
             selectedObject.transform.position.X = (float)numericUpDown1.Value;
+        }
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedObject == null) return;
+
             selectedObject.transform.position.Y = (float)numericUpDown2.Value;
+        }
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedObject == null) return;
+
             selectedObject.transform.position.Z = (float)numericUpDown3.Value;
+        }
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedObject == null) return;
+
             selectedObject.transform.eulerAngles.X = (float)numericUpDown4.Value;
+        }
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedObject == null) return;
+
             selectedObject.transform.eulerAngles.Y = (float)numericUpDown5.Value;
+        }
+        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedObject == null) return;
+
             selectedObject.transform.eulerAngles.Z = (float)numericUpDown6.Value;
+        }
+        private void numericUpDown7_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedObject == null) return;
+
             selectedObject.transform.scale.X = (float)numericUpDown7.Value;
+        }
+        private void numericUpDown8_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedObject == null) return;
+
             selectedObject.transform.scale.Y = (float)numericUpDown8.Value;
+        }
+        private void numericUpDown9_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedObject == null) return;
+
             selectedObject.transform.scale.Z = (float)numericUpDown9.Value;
         }
     }
