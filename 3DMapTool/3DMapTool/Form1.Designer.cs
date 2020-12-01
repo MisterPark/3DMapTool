@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("StaticMesh");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("DynamicMesh");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Mesh", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Scene");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("StaticMesh");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("DynamicMesh");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Mesh", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Scene");
             this.mainPanel = new System.Windows.Forms.Panel();
             this.renderPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -76,6 +76,9 @@
             this.treeViewObject = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBoxMode = new System.Windows.Forms.GroupBox();
+            this.comboBoxMode = new System.Windows.Forms.ComboBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.mainPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
             this.InfoTabControl.SuspendLayout();
@@ -91,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.settingPanel.SuspendLayout();
             this.leftPanel.SuspendLayout();
             this.modeTabControl.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -98,6 +102,7 @@
             this.HierarchyTabControl.SuspendLayout();
             this.hierarchyPage.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBoxMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -123,6 +128,9 @@
             this.renderPanel.Name = "renderPanel";
             this.renderPanel.Size = new System.Drawing.Size(690, 515);
             this.renderPanel.TabIndex = 9;
+            this.renderPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.renderPanel_MouseDown);
+            this.renderPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.renderPanel_MouseMove);
+            this.renderPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.renderPanel_MouseUp);
             // 
             // statusStrip1
             // 
@@ -473,6 +481,7 @@
             // settingPanel
             // 
             this.settingPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.settingPanel.Controls.Add(this.groupBoxMode);
             this.settingPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.settingPanel.Location = new System.Drawing.Point(0, 0);
             this.settingPanel.Name = "settingPanel";
@@ -506,6 +515,7 @@
             this.modeTabControl.Controls.Add(this.tabPage2);
             this.modeTabControl.Controls.Add(this.tabPage3);
             this.modeTabControl.Controls.Add(this.tabPage4);
+            this.modeTabControl.Controls.Add(this.tabPage5);
             this.modeTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.modeTabControl.Location = new System.Drawing.Point(0, 252);
             this.modeTabControl.Name = "modeTabControl";
@@ -540,17 +550,17 @@
             this.treeViewMesh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewMesh.Location = new System.Drawing.Point(3, 3);
             this.treeViewMesh.Name = "treeViewMesh";
-            treeNode1.Name = "nodeStaticMesh";
-            treeNode1.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode1.Text = "StaticMesh";
-            treeNode2.Name = "nodeDynamicMesh";
-            treeNode2.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode2.Text = "DynamicMesh";
-            treeNode3.Name = "nodeMesh";
-            treeNode3.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode3.Text = "Mesh";
+            treeNode13.Name = "nodeStaticMesh";
+            treeNode13.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode13.Text = "StaticMesh";
+            treeNode14.Name = "nodeDynamicMesh";
+            treeNode14.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode14.Text = "DynamicMesh";
+            treeNode15.Name = "nodeMesh";
+            treeNode15.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode15.Text = "Mesh";
             this.treeViewMesh.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode15});
             this.treeViewMesh.Size = new System.Drawing.Size(328, 206);
             this.treeViewMesh.TabIndex = 2;
             // 
@@ -627,11 +637,11 @@
             this.treeViewObject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewObject.Location = new System.Drawing.Point(3, 3);
             this.treeViewObject.Name = "treeViewObject";
-            treeNode4.Name = "nodeScene";
-            treeNode4.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode4.Text = "Scene";
+            treeNode16.Name = "nodeScene";
+            treeNode16.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode16.Text = "Scene";
             this.treeViewObject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode16});
             this.treeViewObject.Size = new System.Drawing.Size(328, 210);
             this.treeViewObject.TabIndex = 0;
             this.treeViewObject.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewObject_NodeMouseClick);
@@ -652,6 +662,40 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // groupBoxMode
+            // 
+            this.groupBoxMode.Controls.Add(this.comboBoxMode);
+            this.groupBoxMode.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxMode.Font = new System.Drawing.Font("굴림", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBoxMode.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxMode.Name = "groupBoxMode";
+            this.groupBoxMode.Size = new System.Drawing.Size(318, 63);
+            this.groupBoxMode.TabIndex = 0;
+            this.groupBoxMode.TabStop = false;
+            this.groupBoxMode.Text = "Mode";
+            // 
+            // comboBoxMode
+            // 
+            this.comboBoxMode.FormattingEnabled = true;
+            this.comboBoxMode.Items.AddRange(new object[] {
+            "Object",
+            "NavMesh"});
+            this.comboBoxMode.Location = new System.Drawing.Point(29, 22);
+            this.comboBoxMode.Name = "comboBoxMode";
+            this.comboBoxMode.Size = new System.Drawing.Size(263, 23);
+            this.comboBoxMode.TabIndex = 0;
+            this.comboBoxMode.Text = "Object";
+            this.comboBoxMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxMode_SelectedIndexChanged);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(334, 259);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "NavMesh";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -679,6 +723,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.settingPanel.ResumeLayout(false);
             this.leftPanel.ResumeLayout(false);
             this.modeTabControl.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -687,6 +732,7 @@
             this.hierarchyPage.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBoxMode.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -735,6 +781,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBoxMode;
+        private System.Windows.Forms.ComboBox comboBoxMode;
+        private System.Windows.Forms.TabPage tabPage5;
     }
 }
 

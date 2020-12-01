@@ -55,8 +55,15 @@ namespace _3DMapTool
             var device = RenderManager.Instance.device;
             device.SetTransform(TransformType.World, transform.world);
 
+            device.SetRenderState(RenderStates.AlphaBlendEnable, true);
+            //device.SetRenderState(RenderStates.SourceBlend, (int)Blend.SourceAlpha);
+            //device.SetRenderState(RenderStates.DestinationBlend, (int)Blend.InvSourceAlpha);
+            device.SetRenderState(RenderStates.AlphaTestEnable, true);
+            device.SetRenderState(RenderStates.ReferenceAlpha, 0x00000088);
+            device.SetRenderState(RenderStates.AlphaFunction, (int)Compare.Greater);
             device.SetRenderState(RenderStates.Lighting, false);
-
+            device.SetRenderState(RenderStates.CullMode, (int)Cull.CounterClockwise);
+            
             for (int i = 0; i < subsetCount; i++) 
             {
                 device.Material = materials[i];
@@ -64,7 +71,10 @@ namespace _3DMapTool
                 mesh.DrawSubset(i);
             }
 
-            device.SetRenderState(RenderStates.Lighting, false);
+            device.SetRenderState(RenderStates.CullMode, (int)Cull.CounterClockwise);
+            device.SetRenderState(RenderStates.Lighting, true);
+            device.SetRenderState(RenderStates.AlphaBlendEnable, false);
+            device.SetRenderState(RenderStates.AlphaTestEnable, false);
         }
 
         public bool LoadMesh(string path, string fileName)
@@ -98,7 +108,7 @@ namespace _3DMapTool
             {
                 materials[i] = mats[i].Material3D;
                 materials[i].Ambient = materials[i].Diffuse;
-                textures[i] = TextureLoader.FromFile(device, mats[i].TextureFilename);
+                textures[i] = TextureLoader.FromFile(device,path+ mats[i].TextureFilename);
             }
 
             subsetCount = materials.Length;

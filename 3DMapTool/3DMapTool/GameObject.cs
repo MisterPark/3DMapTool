@@ -33,8 +33,15 @@ namespace _3DMapTool
             foreach (var iter in components)
             {
                 CustomMesh mesh = iter.Value as CustomMesh;
-                if (mesh == null) continue;
-                iter.Value.Update();
+                if (mesh != null)
+                {
+                    iter.Value.Update();
+                }
+                Collider collider = iter.Value as Collider;
+                if(collider != null)
+                {
+                    collider.Render();
+                }
             }
         }
 
@@ -69,6 +76,11 @@ namespace _3DMapTool
             }
 
             return null;
+        }
+
+        public void OnCollisionEnter(Collider other)
+        {
+
         }
 
 

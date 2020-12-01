@@ -14,6 +14,10 @@ namespace _3DMapTool
         public Vector3 position;
         public Matrix world;
 
+        public Vector3 right;
+        public Vector3 up;
+        public Vector3 look;
+
         public Transform()
         {
             position.X = 0;
@@ -27,6 +31,18 @@ namespace _3DMapTool
             scale.Y = 1;
             scale.Z = 1;
             world = Matrix.Identity;
+
+            right.X = 1;
+            right.Y = 0;
+            right.Z = 0;
+
+            up.X = 0;
+            up.Y = 1;
+            up.Z = 0;
+
+            look.X = 0;
+            look.Y = 0;
+            look.Z = 1;
         }
 
         public Transform(IComponent rhs) : base(rhs)
@@ -44,11 +60,31 @@ namespace _3DMapTool
 
         public override void Update()
         {
+            eulerAngles.X = eulerAngles.X % 360;
+            eulerAngles.Y = eulerAngles.Y % 360;
+            eulerAngles.Z = eulerAngles.Z % 360;
+
+            rotation = Quaternion.RotationYawPitchRoll(Mathf.ToRadian(eulerAngles.Y), Mathf.ToRadian(eulerAngles.X), Mathf.ToRadian(eulerAngles.Z));
+            rotation = Quaternion.Normalize(rotation);
+
             Matrix matScale = Matrix.Scaling(scale);
             Matrix matRot = Matrix.RotationQuaternion(rotation);
             Matrix matTrans = Matrix.Translation(position);
 
             world = matScale * matRot * matTrans;
+
+
+            right = new Vector3(1, 0, 0);
+            up = new Vector3(0, 1, 0);
+            look = new Vector3(0, 0, 1);
+
+            right =Vector3.TransformNormal(right, matRot);
+            up = Vector3.TransformNormal(up, matRot);
+            look = Vector3.TransformNormal(look, matRot);
+
+            right = Vector3.Normalize(right);
+            up = Vector3.Normalize(up);
+            look = Vector3.Normalize(look);
         }
     }
 }

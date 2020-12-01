@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.DirectX;
+using Microsoft.DirectX.Direct3D;
 
 namespace _3DMapTool
 {
@@ -18,7 +20,11 @@ namespace _3DMapTool
 
         public static Panel g_renderPanel = null;
         GameObject selectedObject = null;
-        bool selectedObjectChanged = false;
+        // 카메라 공전용
+        bool isWheelDown = false;
+        Vector3 downPos;
+        //모드
+        Mode mode = Mode.Object;
 
         //=======================================
         // 생성자
@@ -47,13 +53,16 @@ namespace _3DMapTool
         private void RenderPanel_MouseWheel(object sender, MouseEventArgs e)
         {
             float delta = e.Delta / 120.0f;
+            float speed = Math.Abs(delta) * 5.0f;
+            Vector3 direction = Camera.main.look - Camera.main.transform.position;
+            direction = Vector3.Normalize(direction);
             if(delta > 0) // UP
             {
-                Camera.main.transform.position = Camera.main.transform.position + (delta * Camera.main.look * 5.0f);
+                Camera.main.transform.position += direction * speed;
             }
             else if(delta < 0) // DOWN
             {
-                Camera.main.transform.position = Camera.main.transform.position + (delta * Camera.main.look * 5.0f) ;
+                Camera.main.transform.position -= direction * speed;
             }
         }
 
@@ -80,6 +89,8 @@ namespace _3DMapTool
             //\\Resources\\Mesh\\
             ResourceManager.LoadStaticMesh("", "malp.x");
             smeshNode.Nodes.Add("malp");
+            ResourceManager.LoadStaticMesh("Resources/Mesh/summoner_rift/", "summoner_rift.x");
+            smeshNode.Nodes.Add("summoner_rift");
 
         }
 
@@ -87,7 +98,6 @@ namespace _3DMapTool
         {
             if (selectedObject == null) return;
 
-            selectedObjectChanged = true;
             groupBoxInfo.Text = selectedObject.name;
 
             numericUpDown1.Value = (decimal)selectedObject.transform.position.X;
@@ -115,6 +125,15 @@ namespace _3DMapTool
 
             GameObject obj = ObjectManager.CreateObject("");
             obj.AddComponent("Mesh", mesh);
+
+            SphereCollider sphere = new SphereCollider();
+            if(sphere != null)
+            {
+                sphere.gameObject = obj;
+                sphere.transform = obj.transform;
+                obj.AddComponent("SphereCollider", sphere);
+            }
+            
 
             treeViewObject.Nodes[0].Nodes.Add(obj.name);
             treeViewObject.ExpandAll();
@@ -158,19 +177,25 @@ namespace _3DMapTool
         {
             if (selectedObject == null) return;
 
-            selectedObject.transform.eulerAngles.X = (float)numericUpDown4.Value;
+            float val = (float)numericUpDown4.Value % 360.0f;
+            numericUpDown4.Value = (decimal)val;
+            selectedObject.transform.eulerAngles.X = val;
         }
         private void numericUpDown5_ValueChanged(object sender, EventArgs e)
         {
             if (selectedObject == null) return;
 
-            selectedObject.transform.eulerAngles.Y = (float)numericUpDown5.Value;
+            float val = (float)numericUpDown5.Value % 360.0f;
+            numericUpDown5.Value = (decimal)val;
+            selectedObject.transform.eulerAngles.Y = val;
         }
         private void numericUpDown6_ValueChanged(object sender, EventArgs e)
         {
             if (selectedObject == null) return;
 
-            selectedObject.transform.eulerAngles.Z = (float)numericUpDown6.Value;
+            float val = (float)numericUpDown6.Value % 360.0f;
+            numericUpDown6.Value = (decimal)val;
+            selectedObject.transform.eulerAngles.Z = val;
         }
         private void numericUpDown7_ValueChanged(object sender, EventArgs e)
         {
@@ -189,6 +214,85 @@ namespace _3DMapTool
             if (selectedObject == null) return;
 
             selectedObject.transform.scale.Z = (float)numericUpDown9.Value;
+        }
+
+        private void renderPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Middle)
+            {
+                isWheelDown = true;
+                downPos.X = e.Location.X;
+                downPos.Y = e.Location.Y;
+            }
+            else if(e.Button == MouseButtons.Left)
+            {
+                // TODO : 여기부터
+                //if(Physics.Raycast())
+            }
+            else //Right
+            {
+
+            }
+        }
+
+        private void renderPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+                isWheelDown = false;
+            }
+        }
+
+        private void renderPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(isWheelDown)
+            {
+
+                int dx = e.Location.X - (int)downPos.X;
+                int dy = -(e.Location.Y - (int)downPos.Y);
+                downPos.X = e.Location.X;
+                downPos.Y = e.Location.Y;
+
+                Vector3 camLocalPos = Camera.main.transform.position - Camera.main.look;
+
+                Vector3 camRight = Vector3.Cross(new Vector3(0, 1, 0), Camera.main.look);
+                camRight = Vector3.Normalize(camRight);
+                Vector3 camLook = Vector3.Normalize(Camera.main.look);
+                Vector3 camUp = Vector3.Cross(camLook, camRight);
+                camUp = Vector3.Normalize(camUp);
+
+                float angleY = Mathf.ToRadian(dx);
+                float angleX = Mathf.ToRadian(-dy);
+
+                Matrix rot;
+                Matrix rotY = Matrix.RotationAxis(camUp, angleY);
+                Matrix rotX = Matrix.RotationAxis(camRight, angleX);
+                rot = rotX * rotY;
+
+                camLocalPos = Vector3.TransformCoordinate(camLocalPos, rot);
+                //camLocalPos = Vector3.TransformCoordinate(camLocalPos, rotX);
+                camLocalPos += Camera.main.look;
+
+                Camera.main.transform.position = camLocalPos;
+            }
+        }
+
+        private void comboBoxMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = comboBoxMode.SelectedIndex;
+            mode = (Mode)index;
+
+            switch (mode)
+            {
+                case Mode.Object:
+
+                    break;
+                case Mode.NavMesh:
+                    modeTabControl.SelectedIndex = 4;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
