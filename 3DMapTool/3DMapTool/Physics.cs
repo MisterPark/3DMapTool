@@ -28,8 +28,12 @@ namespace _3DMapTool
 
     class Physics
     {
-        public static bool Raycast(Ray ray, RaycastHit outHit, float maxDistance = float.PositiveInfinity)
+        public static bool Raycast(Ray ray, out RaycastHit outHit, float maxDistance = float.PositiveInfinity)
         {
+            outHit.collider = null;
+            outHit.point = new Vector3(0, 0, 0);
+            outHit.distance = 0.0f;
+
             foreach(Collider collider in CollisionManager.Instance.colliders)
             {
                 if(collider.Raycast(ray, out outHit, maxDistance))

@@ -94,6 +94,31 @@ namespace _3DMapTool
             cams.Remove(key);
         }
 
+        public Ray ScreenPointToRay(Vector3 pos)
+        {
+            Ray ray;
+            ray.origin = main.transform.position;
 
+            Matrix viewProj = main.viewMatrix * main.projectionMatrix;
+
+            
+            // Screen To Projection
+            Vector3 direction = new Vector3();
+            direction.X = (pos.X * 2.0f / device.Viewport.Width) - 1.0f;
+            direction.Y = -(pos.Y * 2.0f / device.Viewport.Height) + 1.0f;
+            direction.Z = nearClipPlane;
+
+            // Projection To World
+            
+            Matrix inverseMat = Matrix.Invert(viewProj);
+            direction = Vector3.TransformCoordinate(direction, inverseMat);
+            direction = direction - ray.origin;
+            direction = Vector3.Normalize(direction);
+
+            ray.direction = direction;
+
+
+            return ray;
+        }
     }
 }

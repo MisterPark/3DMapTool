@@ -229,6 +229,7 @@ namespace _3DMapTool
             else if(e.Button == MouseButtons.Left)
             {
                 // TODO : 여기부터
+                //Ray ray = Camera.main.ScreenPointToRay(Input.)
                 //if(Physics.Raycast())
             }
             else //Right
