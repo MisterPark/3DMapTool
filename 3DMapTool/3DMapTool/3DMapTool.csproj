@@ -70,6 +70,7 @@
     <Compile Include="Manager\ObjectManager.cs" />
     <Compile Include="Component\CustomMesh.cs" />
     <Compile Include="Mathf.cs" />
+    <Compile Include="MeshCollider.cs" />
     <Compile Include="Mode.cs" />
     <Compile Include="Physics.cs" />
     <Compile Include="Program.cs" />

@@ -17,6 +17,13 @@ namespace _3DMapTool
 
         int subsetCount = 0;
 
+        // 공용정보
+        int vertexSize = 0;
+        int vertexCount = 0;
+        int faceCount = 0;
+        Vector3[] vertices;
+        int[] indices;
+
         public StaticMesh()
         {
         }
@@ -104,7 +111,7 @@ namespace _3DMapTool
 
             materials = new Material[mats.Length];
             textures = new Texture[mats.Length];
-            for(int i=0;i< mats.Length;i++)
+            for (int i = 0; i < mats.Length; i++) 
             {
                 materials[i] = mats[i].Material3D;
                 materials[i].Ambient = materials[i].Diffuse;
@@ -113,7 +120,55 @@ namespace _3DMapTool
 
             subsetCount = materials.Length;
 
+            // 정보세팅
+            vertexCount = mesh.NumberVertices;
+            vertexSize = mesh.NumberBytesPerVertex;
+            vertices = new Vector3[vertexCount];
+            CustomVertex.PositionNormal[] data = (CustomVertex.PositionNormal[])mesh.VertexBuffer.Lock(0, typeof(CustomVertex.PositionNormal), LockFlags.None, mesh.NumberVertices);
+
+            for (int i = 0; i < vertexCount; i++) 
+            {
+                vertices[i] = data[i].Position;
+            }
+            mesh.VertexBuffer.Unlock();
+
+            faceCount = mesh.NumberFaces;
+            int indexCount = faceCount * 3;
+            indices = new int[indexCount];
+            ushort[] indexbuff = (ushort[])mesh.IndexBuffer.Lock(0, typeof(ushort), LockFlags.None, indexCount);
+            
+            for(int i=0;i<indexCount;i++)
+            {
+                indices[i] = indexbuff[i];
+            }
+            mesh.IndexBuffer.Unlock();
+
             return true;
+        }
+
+        public override int GetVertexCount()
+        {
+            return vertexCount;
+        }
+
+        public override int GetVertexSize()
+        {
+            return vertexSize;
+        }
+
+        public override Vector3[] GetVertices()
+        {
+            return vertices;
+        }
+
+        public override int[] GetIndices()
+        {
+            return indices;
+        }
+
+        public override int GetFaceCount()
+        {
+            return faceCount;
         }
     }
 }

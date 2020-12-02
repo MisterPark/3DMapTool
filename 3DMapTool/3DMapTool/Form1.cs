@@ -125,6 +125,8 @@ namespace _3DMapTool
 
             GameObject obj = ObjectManager.CreateObject("");
             obj.AddComponent("Mesh", mesh);
+            obj.AddComponent<MeshCollider>("MeshCollider");
+            
 
             SphereCollider sphere = new SphereCollider();
             if(sphere != null)

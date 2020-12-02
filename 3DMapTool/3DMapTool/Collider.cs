@@ -10,7 +10,7 @@ namespace _3DMapTool
     abstract class Collider : IComponent
     {
         public Mesh mesh = null;
-        protected List<Vector3> vertices;
+        protected List<Vector3> vertices = null;
         
 
         public Vector3 center;

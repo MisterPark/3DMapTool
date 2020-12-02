@@ -78,6 +78,21 @@ namespace _3DMapTool
             return null;
         }
 
+        public IComponent GetComponent<T>() where T : class
+        {
+            foreach(var iter in components) 
+            {
+                IComponent comp = iter.Value;
+                T temp = comp as T;
+                if(temp !=null)
+                {
+                    return comp;
+                }
+            }
+
+            return null;
+        }
+
         public void OnCollisionEnter(Collider other)
         {
 
