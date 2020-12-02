@@ -61,10 +61,12 @@ namespace _3DMapTool
             Vector3 v1;
             Vector3 v2;
             Vector3 v3;
+            bool result = false;
+            float minDist = float.MaxValue;
+
             for (int i = 0; i < triangleCount; i++)
             {
                 index = i * 3;
-                ind = indices[index];
                 v1 = vertexPositions[indices[index]];
                 v2 = vertexPositions[indices[index + 1]];
                 v3 = vertexPositions[indices[index + 2]];
@@ -76,18 +78,24 @@ namespace _3DMapTool
                 IntersectInformation intersectInfo;
                 if(Geometry.IntersectTri(v1,v2,v3,ray.origin,ray.direction, out intersectInfo))
                 {
-                    info.distance = intersectInfo.Dist;
-                    info.collider = this;
-                    info.point = v1 + intersectInfo.U * (v2 - v1) + intersectInfo.V * (v3 - v1);
-                    outHitInfo = info;
+                    result = true;
+                    if(intersectInfo.Dist < minDist)
+                    {
+                        minDist = intersectInfo.Dist;
+                        info.distance = intersectInfo.Dist;
+                        info.collider = this;
+                        info.point = v1 + intersectInfo.U * (v2 - v1) + intersectInfo.V * (v3 - v1);
+                        outHitInfo = info;
+                    }
+                    
 
-                    return true;
+                    
                 }
 
             }
 
 
-            return false;
+            return result;
 
             
         }

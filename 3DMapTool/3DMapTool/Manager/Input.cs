@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Microsoft.DirectX;
+using Microsoft.DirectX.Direct3D;
 
 namespace _3DMapTool
 {
@@ -35,6 +37,8 @@ namespace _3DMapTool
 
         private int[] mouseFrameCount = new int[(int)MouseInputType.End];
         public bool[] mouse = new bool[(int)MouseInputType.End];
+
+        public static Vector3 mousePosition = new Vector3(0, 0, 0);
 
         private static Input instance = new Input();
         private Input()

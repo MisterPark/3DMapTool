@@ -17,8 +17,12 @@ namespace _3DMapTool
         private const int WM_LBUTTONDBLCLK = 0x0203;
         private const int WM_RBUTTONDBLCLK = 0x0206;
         private const int WM_MOUSEWHEEL = 0x020A;
+        private const int WM_SYSCOMMAND = 0x0112;
+        private const int SC_MINIMIZE = 0xF020;
+        private const int SC_RESTORE = 0xF120;
 
         private Form1 parent;
+        private bool isMinimize = false;
 
         public WMListener(Form1 parent)
         {
@@ -44,9 +48,25 @@ namespace _3DMapTool
         {
             // Listen for operating system messages
 
+            
+
             switch (m.Msg)
             {
-
+                case WM_SYSCOMMAND:
+                    {
+                        int wparam = m.WParam.ToInt32();
+                        if (wparam == SC_MINIMIZE)
+                        {
+                            isMinimize = true;
+                            base.WndProc(ref m);
+                            return;
+                        }
+                        else if(wparam == SC_RESTORE)
+                        {
+                            isMinimize = false;
+                        }
+                    }
+                    break;
                 case WM_ACTIVATEAPP:
                     break;
                 case WM_LBUTTONDOWN:
@@ -72,23 +92,27 @@ namespace _3DMapTool
                     Input.Instance.mouse[(int)MouseInputType.RButtonDouble] = true;
                     break;
                 case WM_MOUSEWHEEL:
-                    int wparam = m.WParam.ToInt32();
-                    ushort hiword = (ushort)(wparam >> 16);
-                    if (hiword > 0)
                     {
-                        Input.Instance.mouse[(int)MouseInputType.WheelUp] = true;
+                        int wparam = m.WParam.ToInt32();
+                        ushort hiword = (ushort)(wparam >> 16);
+                        if (hiword > 0)
+                        {
+                            Input.Instance.mouse[(int)MouseInputType.WheelUp] = true;
+                        }
+                        else
+                        {
+                            Input.Instance.mouse[(int)MouseInputType.WheelDown] = true;
+                        }
                     }
-                    else
-                    {
-                        Input.Instance.mouse[(int)MouseInputType.WheelDown] = true;
-                    }
+                    
 
 
                     break;
             }
 
-            base.WndProc(ref m);
 
+            if (isMinimize == false)
+                base.WndProc(ref m);
         }
     }
 }

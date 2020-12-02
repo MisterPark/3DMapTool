@@ -70,6 +70,8 @@ namespace _3DMapTool
             var device = RenderManager.Instance.device;
 
             device.SetTransform(TransformType.World, transform.world);
+
+            device.SetTexture(0, null);
             device.SetRenderState(RenderStates.FillMode, (int)FillMode.WireFrame);
             device.SetRenderState(RenderStates.ShadeMode, (int)ShadeMode.Flat);
             device.SetRenderState(RenderStates.Lighting, false);

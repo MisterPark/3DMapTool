@@ -97,9 +97,9 @@ namespace _3DMapTool
         public Ray ScreenPointToRay(Vector3 pos)
         {
             Ray ray;
-            ray.origin = main.transform.position;
+            ray.origin = transform.position;
 
-            Matrix viewProj = main.viewMatrix * main.projectionMatrix;
+            Matrix viewProj = viewMatrix * projectionMatrix;
 
             
             // Screen To Projection
@@ -112,6 +112,7 @@ namespace _3DMapTool
             
             Matrix inverseMat = Matrix.Invert(viewProj);
             direction = Vector3.TransformCoordinate(direction, inverseMat);
+
             direction = direction - ray.origin;
             direction = Vector3.Normalize(direction);
 

@@ -60,6 +60,8 @@ namespace _3DMapTool
 
         public override void Update()
         {
+            world = Matrix.Identity;
+
             eulerAngles.X = eulerAngles.X % 360;
             eulerAngles.Y = eulerAngles.Y % 360;
             eulerAngles.Z = eulerAngles.Z % 360;

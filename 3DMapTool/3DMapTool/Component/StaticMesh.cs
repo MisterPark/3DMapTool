@@ -36,6 +36,11 @@ namespace _3DMapTool
             this.materials = rhs.materials;
             this.textures = rhs.textures;
             this.subsetCount = rhs.subsetCount;
+            this.vertices = rhs.vertices;
+            this.indices = rhs.indices;
+            this.vertexSize = rhs.vertexSize;
+            this.vertexCount = rhs.vertexCount;
+            this.faceCount = rhs.faceCount;
         }
 
         public StaticMesh(ref GameObject owner) : base(ref owner)
@@ -82,6 +87,7 @@ namespace _3DMapTool
             device.SetRenderState(RenderStates.Lighting, true);
             device.SetRenderState(RenderStates.AlphaBlendEnable, false);
             device.SetRenderState(RenderStates.AlphaTestEnable, false);
+            device.SetTexture(0,null);
         }
 
         public bool LoadMesh(string path, string fileName)
@@ -124,24 +130,41 @@ namespace _3DMapTool
             vertexCount = mesh.NumberVertices;
             vertexSize = mesh.NumberBytesPerVertex;
             vertices = new Vector3[vertexCount];
-            CustomVertex.PositionNormal[] data = (CustomVertex.PositionNormal[])mesh.VertexBuffer.Lock(0, typeof(CustomVertex.PositionNormal), LockFlags.None, mesh.NumberVertices);
-
+            CustomVertex.PositionNormalTextured[] data = (CustomVertex.PositionNormalTextured[])mesh.VertexBuffer.Lock(0, typeof(CustomVertex.PositionNormalTextured), LockFlags.None, mesh.NumberVertices);
+            
             for (int i = 0; i < vertexCount; i++) 
             {
                 vertices[i] = data[i].Position;
             }
             mesh.VertexBuffer.Unlock();
 
+            
             faceCount = mesh.NumberFaces;
             int indexCount = faceCount * 3;
             indices = new int[indexCount];
-            ushort[] indexbuff = (ushort[])mesh.IndexBuffer.Lock(0, typeof(ushort), LockFlags.None, indexCount);
-            
-            for(int i=0;i<indexCount;i++)
+            bool is16Bit = mesh.IndexBuffer.Description.Is16BitIndices;
+            if (is16Bit)
             {
-                indices[i] = indexbuff[i];
+                ushort[] indexbuff = (ushort[])mesh.IndexBuffer.Lock(0, typeof(ushort), LockFlags.None, indexCount);
+
+                for (int i = 0; i < indexCount; i++)
+                {
+                    indices[i] = indexbuff[i];
+                }
+                mesh.IndexBuffer.Unlock();
             }
-            mesh.IndexBuffer.Unlock();
+            else
+            {
+                int[] indexbuff = (int[])mesh.IndexBuffer.Lock(0, typeof(int), LockFlags.None, indexCount);
+
+                for (int i = 0; i < indexCount; i++)
+                {
+                    indices[i] = indexbuff[i];
+                }
+                mesh.IndexBuffer.Unlock();
+            }
+            
+            
 
             return true;
         }

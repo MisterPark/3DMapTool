@@ -43,7 +43,7 @@ namespace _3DMapTool
             CustomVertex.PositionNormalColored[] data = (CustomVertex.PositionNormalColored[])mesh.VertexBuffer.Lock(0, typeof(CustomVertex.PositionNormalColored), LockFlags.None, mesh.NumberVertices);
             for (int i = 0; i < mesh.NumberVertices; i++)
             {
-                data[i].Color = int.MaxValue;
+                data[i].Color = color.ToArgb();
             }
             mesh.VertexBuffer.Unlock();
 

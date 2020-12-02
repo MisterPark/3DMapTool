@@ -46,6 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.Direct3DX.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualC" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -72,6 +73,7 @@
     <Compile Include="Mathf.cs" />
     <Compile Include="MeshCollider.cs" />
     <Compile Include="Mode.cs" />
+    <Compile Include="NavManager.cs" />
     <Compile Include="Physics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Lib\Transform.cs" />
     <Compile Include="ResourceManager.cs" />
     <Compile Include="SphereCollider.cs" />
+    <Compile Include="TriCol.cs" />
     <Compile Include="WMListener.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

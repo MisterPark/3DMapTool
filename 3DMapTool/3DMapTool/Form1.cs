@@ -73,6 +73,7 @@ namespace _3DMapTool
 
             RenderManager.Clear();
             ObjectManager.Render();
+            NavManager.Instance.Update();
             RenderManager.Present(g_renderPanel);
 
         }
@@ -91,6 +92,8 @@ namespace _3DMapTool
             smeshNode.Nodes.Add("malp");
             ResourceManager.LoadStaticMesh("Resources/Mesh/summoner_rift/", "summoner_rift.x");
             smeshNode.Nodes.Add("summoner_rift");
+            ResourceManager.LoadStaticMesh("Resources/Mesh/", "testPlaneMesh.x");
+            smeshNode.Nodes.Add("testPlaneMesh");
 
         }
 
@@ -228,9 +231,46 @@ namespace _3DMapTool
             }
             else if(e.Button == MouseButtons.Left)
             {
+                this.ActiveControl = renderPanel;
+
+                switch (mode)
+                {
+                    case Mode.Object:
+                        {
+                            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                            RaycastHit hit;
+                            if (Physics.Raycast(ray, out hit))
+                            {
+                                foreach(TreeNode node in treeViewObject.Nodes[0].Nodes)
+                                {
+                                    if(node.Text == hit.collider.gameObject.name)
+                                    {
+                                        treeViewObject.SelectedNode = node;
+                                        selectedObject = hit.collider.gameObject;
+                                        SetGameObjectInfo();
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case Mode.NavMesh:
+                        {
+                            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                            RaycastHit hit;
+                            if (Physics.Raycast(ray, out hit))
+                            {
+                                GameObject obj = ObjectManager.CreateObject("");
+                                obj.transform.position = hit.point;
+                                obj.AddComponent<SphereCollider>("SphereCollider");
+                                NavManager.AddVertex(hit.point);
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
                 // TODO : 여기부터
-                //Ray ray = Camera.main.ScreenPointToRay(Input.)
-                //if(Physics.Raycast())
+                
             }
             else //Right
             {
@@ -248,6 +288,8 @@ namespace _3DMapTool
 
         private void renderPanel_MouseMove(object sender, MouseEventArgs e)
         {
+            Input.mousePosition = new Vector3(e.Location.X, e.Location.Y, 0);
+
             if(isWheelDown)
             {
 
@@ -270,6 +312,7 @@ namespace _3DMapTool
                 Matrix rot;
                 Matrix rotY = Matrix.RotationAxis(camUp, angleY);
                 Matrix rotX = Matrix.RotationAxis(camRight, angleX);
+                
                 rot = rotX * rotY;
 
                 camLocalPos = Vector3.TransformCoordinate(camLocalPos, rot);
