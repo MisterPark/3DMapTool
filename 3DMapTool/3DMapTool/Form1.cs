@@ -19,6 +19,7 @@ namespace _3DMapTool
         WMListener wmListener;
 
         public static Panel g_renderPanel = null;
+        public static ListBox g_vertexList = null;
         GameObject selectedObject = null;
         // 카메라 공전용
         bool isWheelDown = false;
@@ -36,6 +37,7 @@ namespace _3DMapTool
             wmListener = new WMListener(this);
             // 렌더 패널 지정
             g_renderPanel = renderPanel;
+            g_vertexList = listBoxVertex;
             // 디바이스 초기화
             RenderManager.InitializeDevice(renderPanel);
 
@@ -259,10 +261,9 @@ namespace _3DMapTool
                             RaycastHit hit;
                             if (Physics.Raycast(ray, out hit))
                             {
-                                GameObject obj = ObjectManager.CreateObject("");
-                                obj.transform.position = hit.point;
-                                obj.AddComponent<SphereCollider>("SphereCollider");
+                                
                                 NavManager.AddVertex(hit.point);
+                                
                             }
                         }
                         break;
@@ -339,6 +340,21 @@ namespace _3DMapTool
                 default:
                     break;
             }
+        }
+
+        private void buttonSaveVertex_Click(object sender, EventArgs e)
+        {
+            NavManager.Save();
+            MessageBox.Show("네비메쉬 저장");
+        }
+
+        private void buttonLoadVertex_Click(object sender, EventArgs e)
+        {
+            NavManager.Load();
+            MessageBox.Show("네비메쉬 불러오기");
+            
+            
+            
         }
     }
 }

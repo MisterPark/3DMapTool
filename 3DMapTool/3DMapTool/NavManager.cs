@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
+using System.IO;
 
 namespace _3DMapTool
 {
@@ -44,7 +45,12 @@ namespace _3DMapTool
             instance.vertexCount++;
             instance.vertices.Add(instance.vertexCount, pos);
 
-            if(instance.vertexCount %3 == 0)
+            GameObject obj = ObjectManager.CreateObject("Vertex");
+            obj.transform.position = pos;
+            obj.AddComponent<SphereCollider>("SphereCollider");
+            Form1.g_vertexList.Items.Add(obj.name);
+
+            if (instance.vertexCount %3 == 0)
             {
                 NavIndex index;
                 index.a = instance.vertexCount - 2;
@@ -84,6 +90,45 @@ namespace _3DMapTool
                     instance.indices.Remove(navIdx);
                 }
             }
+        }
+
+        public static void Save()
+        {
+            FileStream fs = File.Create("nav.dat");
+            fs.Close();
+
+
+            BinaryWriter sw = new BinaryWriter(new FileStream("nav.dat",FileMode.Open,FileAccess.Write));
+
+            sw.Write(instance.vertices.Count);
+
+            foreach(var iter in instance.vertices)
+            {
+                Vector3 vertex = iter.Value;
+                sw.Write(vertex.X);
+                sw.Write(vertex.Y);
+                sw.Write(vertex.Z);
+            }
+
+            sw.Close();
+            
+        }
+
+        public static void Load()
+        {
+            BinaryReader sr = new BinaryReader(new FileStream("nav.dat", FileMode.Open, FileAccess.Read));
+            int vertexCnt = sr.ReadInt32();
+
+            for (int i = 0; i < vertexCnt; i++) 
+            {
+                float x = sr.ReadSingle();
+                float y = sr.ReadSingle();
+                float z = sr.ReadSingle();
+
+                AddVertex(new Vector3(x, y, z));
+            }
+
+            sr.Close();
         }
 
     }

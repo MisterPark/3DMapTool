@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("StaticMesh");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("DynamicMesh");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Mesh", new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14});
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Scene");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("StaticMesh");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("DynamicMesh");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Mesh", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Scene");
             this.mainPanel = new System.Windows.Forms.Panel();
             this.renderPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -60,6 +60,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitter4 = new System.Windows.Forms.Splitter();
             this.settingPanel = new System.Windows.Forms.Panel();
+            this.groupBoxMode = new System.Windows.Forms.GroupBox();
+            this.comboBoxMode = new System.Windows.Forms.ComboBox();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.leftPanel = new System.Windows.Forms.Panel();
             this.modeTabControl = new System.Windows.Forms.TabControl();
@@ -70,15 +72,16 @@
             this.buttonMesh = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.HierarchyTabControl = new System.Windows.Forms.TabControl();
             this.hierarchyPage = new System.Windows.Forms.TabPage();
             this.treeViewObject = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBoxMode = new System.Windows.Forms.GroupBox();
-            this.comboBoxMode = new System.Windows.Forms.ComboBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.listBoxVertex = new System.Windows.Forms.ListBox();
+            this.buttonSaveVertex = new System.Windows.Forms.Button();
+            this.buttonLoadVertex = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
             this.InfoTabControl.SuspendLayout();
@@ -95,14 +98,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.settingPanel.SuspendLayout();
+            this.groupBoxMode.SuspendLayout();
             this.leftPanel.SuspendLayout();
             this.modeTabControl.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panelMeshBottom.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.HierarchyTabControl.SuspendLayout();
             this.hierarchyPage.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBoxMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -488,6 +492,31 @@
             this.settingPanel.Size = new System.Drawing.Size(318, 126);
             this.settingPanel.TabIndex = 0;
             // 
+            // groupBoxMode
+            // 
+            this.groupBoxMode.Controls.Add(this.comboBoxMode);
+            this.groupBoxMode.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxMode.Font = new System.Drawing.Font("굴림", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBoxMode.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxMode.Name = "groupBoxMode";
+            this.groupBoxMode.Size = new System.Drawing.Size(318, 63);
+            this.groupBoxMode.TabIndex = 0;
+            this.groupBoxMode.TabStop = false;
+            this.groupBoxMode.Text = "Mode";
+            // 
+            // comboBoxMode
+            // 
+            this.comboBoxMode.FormattingEnabled = true;
+            this.comboBoxMode.Items.AddRange(new object[] {
+            "Object",
+            "NavMesh"});
+            this.comboBoxMode.Location = new System.Drawing.Point(29, 22);
+            this.comboBoxMode.Name = "comboBoxMode";
+            this.comboBoxMode.Size = new System.Drawing.Size(263, 23);
+            this.comboBoxMode.TabIndex = 0;
+            this.comboBoxMode.Text = "Object";
+            this.comboBoxMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxMode_SelectedIndexChanged);
+            // 
             // splitter2
             // 
             this.splitter2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -550,17 +579,17 @@
             this.treeViewMesh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewMesh.Location = new System.Drawing.Point(3, 3);
             this.treeViewMesh.Name = "treeViewMesh";
-            treeNode13.Name = "nodeStaticMesh";
-            treeNode13.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode13.Text = "StaticMesh";
-            treeNode14.Name = "nodeDynamicMesh";
-            treeNode14.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode14.Text = "DynamicMesh";
-            treeNode15.Name = "nodeMesh";
-            treeNode15.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode15.Text = "Mesh";
+            treeNode5.Name = "nodeStaticMesh";
+            treeNode5.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode5.Text = "StaticMesh";
+            treeNode6.Name = "nodeDynamicMesh";
+            treeNode6.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode6.Text = "DynamicMesh";
+            treeNode7.Name = "nodeMesh";
+            treeNode7.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode7.Text = "Mesh";
             this.treeViewMesh.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode15});
+            treeNode7});
             this.treeViewMesh.Size = new System.Drawing.Size(328, 206);
             this.treeViewMesh.TabIndex = 2;
             // 
@@ -602,6 +631,18 @@
             this.tabPage4.Text = "Effect";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.buttonLoadVertex);
+            this.tabPage5.Controls.Add(this.buttonSaveVertex);
+            this.tabPage5.Controls.Add(this.listBoxVertex);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(334, 259);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "NavMesh";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -637,11 +678,11 @@
             this.treeViewObject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewObject.Location = new System.Drawing.Point(3, 3);
             this.treeViewObject.Name = "treeViewObject";
-            treeNode16.Name = "nodeScene";
-            treeNode16.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode16.Text = "Scene";
+            treeNode8.Name = "nodeScene";
+            treeNode8.NodeFont = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode8.Text = "Scene";
             this.treeViewObject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode16});
+            treeNode8});
             this.treeViewObject.Size = new System.Drawing.Size(328, 210);
             this.treeViewObject.TabIndex = 0;
             this.treeViewObject.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewObject_NodeMouseClick);
@@ -663,39 +704,34 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // groupBoxMode
+            // listBoxVertex
             // 
-            this.groupBoxMode.Controls.Add(this.comboBoxMode);
-            this.groupBoxMode.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBoxMode.Font = new System.Drawing.Font("굴림", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBoxMode.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxMode.Name = "groupBoxMode";
-            this.groupBoxMode.Size = new System.Drawing.Size(318, 63);
-            this.groupBoxMode.TabIndex = 0;
-            this.groupBoxMode.TabStop = false;
-            this.groupBoxMode.Text = "Mode";
+            this.listBoxVertex.FormattingEnabled = true;
+            this.listBoxVertex.ItemHeight = 12;
+            this.listBoxVertex.Location = new System.Drawing.Point(8, 17);
+            this.listBoxVertex.Name = "listBoxVertex";
+            this.listBoxVertex.Size = new System.Drawing.Size(120, 148);
+            this.listBoxVertex.TabIndex = 1;
             // 
-            // comboBoxMode
+            // buttonSaveVertex
             // 
-            this.comboBoxMode.FormattingEnabled = true;
-            this.comboBoxMode.Items.AddRange(new object[] {
-            "Object",
-            "NavMesh"});
-            this.comboBoxMode.Location = new System.Drawing.Point(29, 22);
-            this.comboBoxMode.Name = "comboBoxMode";
-            this.comboBoxMode.Size = new System.Drawing.Size(263, 23);
-            this.comboBoxMode.TabIndex = 0;
-            this.comboBoxMode.Text = "Object";
-            this.comboBoxMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxMode_SelectedIndexChanged);
+            this.buttonSaveVertex.Location = new System.Drawing.Point(8, 171);
+            this.buttonSaveVertex.Name = "buttonSaveVertex";
+            this.buttonSaveVertex.Size = new System.Drawing.Size(120, 23);
+            this.buttonSaveVertex.TabIndex = 2;
+            this.buttonSaveVertex.Text = "Save";
+            this.buttonSaveVertex.UseVisualStyleBackColor = true;
+            this.buttonSaveVertex.Click += new System.EventHandler(this.buttonSaveVertex_Click);
             // 
-            // tabPage5
+            // buttonLoadVertex
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(334, 259);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "NavMesh";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.buttonLoadVertex.Location = new System.Drawing.Point(8, 200);
+            this.buttonLoadVertex.Name = "buttonLoadVertex";
+            this.buttonLoadVertex.Size = new System.Drawing.Size(120, 23);
+            this.buttonLoadVertex.TabIndex = 3;
+            this.buttonLoadVertex.Text = "Load";
+            this.buttonLoadVertex.UseVisualStyleBackColor = true;
+            this.buttonLoadVertex.Click += new System.EventHandler(this.buttonLoadVertex_Click);
             // 
             // Form1
             // 
@@ -724,15 +760,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.settingPanel.ResumeLayout(false);
+            this.groupBoxMode.ResumeLayout(false);
             this.leftPanel.ResumeLayout(false);
             this.modeTabControl.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panelMeshBottom.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
             this.HierarchyTabControl.ResumeLayout(false);
             this.hierarchyPage.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBoxMode.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -784,6 +821,9 @@
         private System.Windows.Forms.GroupBox groupBoxMode;
         private System.Windows.Forms.ComboBox comboBoxMode;
         private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.ListBox listBoxVertex;
+        private System.Windows.Forms.Button buttonLoadVertex;
+        private System.Windows.Forms.Button buttonSaveVertex;
     }
 }
 

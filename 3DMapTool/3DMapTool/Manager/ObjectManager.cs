@@ -42,10 +42,11 @@ namespace _3DMapTool
         public static GameObject CreateObject(string key)
         {
             string objKey = key;
+            GameObject obj;
 
-            if(objKey == string.Empty)
+            if (objKey == string.Empty)
             {
-                GameObject obj;
+                
                 string tag = "GameObject";
                 int count = 1;
                 string name;
@@ -63,6 +64,21 @@ namespace _3DMapTool
 
                 }
                 
+            }
+            else if(instance.objectList.TryGetValue(key,out obj))
+            {
+                string name;
+                int count = 1;
+                while(true)
+                {
+                    name = key + count.ToString();
+                    if(instance.objectList.TryGetValue(name, out obj) == false)
+                    {
+                        objKey = name;
+                        break;
+                    }
+                    count++;
+                }
             }
             GameObject go = new GameObject();
             go.name = objKey;
