@@ -42,7 +42,8 @@ namespace _3DMapTool
             pp.EnableAutoDepthStencil = true;
             pp.AutoDepthStencilFormat = DepthFormat.D24S8;
             pp.FullScreenRefreshRateInHz = 0;
-            instance.device = new Device(0, DeviceType.Hardware, target, CreateFlags.HardwareVertexProcessing, pp);
+            pp.PresentationInterval = PresentInterval.Immediate;
+            instance.device = new Device(0, DeviceType.Hardware, target, CreateFlags.SoftwareVertexProcessing | CreateFlags.MultiThreaded, pp);
 
             instance.sprite = new Sprite(instance.device);
             instance.line = new Line(instance.device);

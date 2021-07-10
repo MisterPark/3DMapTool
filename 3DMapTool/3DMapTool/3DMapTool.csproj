@@ -81,6 +81,7 @@
     <Compile Include="Lib\Transform.cs" />
     <Compile Include="ResourceManager.cs" />
     <Compile Include="SphereCollider.cs" />
+    <Compile Include="Time.cs" />
     <Compile Include="TriCol.cs" />
     <Compile Include="WMListener.cs" />
     <EmbeddedResource Include="Form1.resx">

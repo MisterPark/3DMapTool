@@ -70,9 +70,10 @@ namespace _3DMapTool
 
         public void Loop(object sender, EventArgs e)
         {
+            Time.Update();
+            Text = "박경훈 맵툴 - FPS : " + Time.FPS.ToString();
             Input.Update();
             ObjectManager.Update();
-
             RenderManager.Clear();
             ObjectManager.Render();
             NavManager.Instance.Update();
