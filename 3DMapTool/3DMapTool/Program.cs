@@ -14,7 +14,22 @@ namespace _3DMapTool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
+            Form1 form = new Form1();
+            form.Show();
+            
+            while(form.Created)
+            {
+                Time.Update();
+                form.Text = "박경훈 맵툴 - FPS : " + Time.FPS.ToString();
+                Input.Update();
+                ObjectManager.Update();
+                RenderManager.Clear();
+                ObjectManager.Render();
+                NavManager.Instance.Update();
+                RenderManager.Present(form.RenderPanel);
+                Application.DoEvents();
+            }
         }
     }
 }

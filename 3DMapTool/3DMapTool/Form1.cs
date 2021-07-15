@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
+using System.Threading;
 
 namespace _3DMapTool
 {
@@ -15,7 +16,6 @@ namespace _3DMapTool
         //=======================================
         // 멤버
         //=======================================
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         WMListener wmListener;
 
         public static Panel g_renderPanel = null;
@@ -27,29 +27,30 @@ namespace _3DMapTool
         //모드
         Mode mode = Mode.Object;
 
+        public static Form1 Instance { get; private set; }
+        public Panel RenderPanel { get; private set; }
         //=======================================
         // 생성자
         //=======================================
         public Form1()
         {
             InitializeComponent();
+            Instance = this;
             renderPanel.MouseWheel += RenderPanel_MouseWheel;
             wmListener = new WMListener(this);
             // 렌더 패널 지정
             g_renderPanel = renderPanel;
             g_vertexList = listBoxVertex;
+            RenderPanel = renderPanel;
             // 디바이스 초기화
             RenderManager.InitializeDevice(renderPanel);
 
             // 리소스 로드
             LoadResources();
 
-            Camera.CreateCamera("MainCamera");
+            Camera.Create("MainCamera");
 
-            // 타이머 세팅
-            timer.Interval = 20;
-            timer.Tick += new EventHandler(Loop);
-            timer.Start();
+            
         }
 
         private void RenderPanel_MouseWheel(object sender, MouseEventArgs e)
@@ -68,23 +69,9 @@ namespace _3DMapTool
             }
         }
 
-        public void Loop(object sender, EventArgs e)
-        {
-            Time.Update();
-            Text = "박경훈 맵툴 - FPS : " + Time.FPS.ToString();
-            Input.Update();
-            ObjectManager.Update();
-            RenderManager.Clear();
-            ObjectManager.Render();
-            NavManager.Instance.Update();
-            RenderManager.Present(g_renderPanel);
-
-        }
 
         public void LoadResources()
         {
-            
-            
             TreeNode root = treeViewMesh.Nodes[0];
             TreeNode smeshNode = root.Nodes[0];
             TreeNode dmeshNode = root.Nodes[1];

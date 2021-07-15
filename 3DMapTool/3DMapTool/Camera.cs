@@ -79,7 +79,7 @@ namespace _3DMapTool
             device.SetTransform(TransformType.Projection, projectionMatrix);
         }
 
-        public static Camera CreateCamera(string key)
+        public static Camera Create(string key)
         {
             Camera cam = new Camera();
             cam.name = key;

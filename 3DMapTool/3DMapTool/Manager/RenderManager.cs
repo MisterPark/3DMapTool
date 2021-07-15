@@ -16,7 +16,6 @@ namespace _3DMapTool
         private Line line = null;
         private RenderManager()
         {
-
         }
 
         public static RenderManager Instance
@@ -27,7 +26,6 @@ namespace _3DMapTool
 
         public static void InitializeDevice(Control target)
         {
-            
             PresentParameters pp = new PresentParameters();
             pp.BackBufferWidth = 800;
             pp.BackBufferHeight = 600;
@@ -41,10 +39,9 @@ namespace _3DMapTool
             pp.SwapEffect = SwapEffect.Discard;
             pp.EnableAutoDepthStencil = true;
             pp.AutoDepthStencilFormat = DepthFormat.D24S8;
-            pp.FullScreenRefreshRateInHz = 0;
+            pp.FullScreenRefreshRateInHz = PresentParameters.DefaultPresentRate;
             pp.PresentationInterval = PresentInterval.Immediate;
-            instance.device = new Device(0, DeviceType.Hardware, target, CreateFlags.SoftwareVertexProcessing | CreateFlags.MultiThreaded, pp);
-
+            instance.device = new Device(0, DeviceType.Hardware, target, CreateFlags.HardwareVertexProcessing | CreateFlags.MultiThreaded, pp);
             instance.sprite = new Sprite(instance.device);
             instance.line = new Line(instance.device);
         }
@@ -54,6 +51,7 @@ namespace _3DMapTool
             instance.device.Clear(ClearFlags.Target | ClearFlags.ZBuffer | ClearFlags.Stencil, Color.Blue, 1.0f, 0);
             instance.device.BeginScene();
         }
+
         public static void Present(Control target)
         {
             instance.device.EndScene();
@@ -64,6 +62,13 @@ namespace _3DMapTool
         {
             instance.device.EndScene();
             instance.device.Present(new Rectangle(0, 0, width, height), target, false);
+            instance.device.Present(new Rectangle(0, 0, 100, 100), target, false);
+        }
+
+        public static void Present(int x, int y, int w, int h)
+        {
+            instance.device.EndScene();
+            instance.device.Present(new Rectangle(x, y, w, h), false);
         }
 
 

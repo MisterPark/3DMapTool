@@ -81,6 +81,7 @@ namespace _3DMapTool
                 device.Material = materials[i];
                 device.SetTexture(0, textures[i]);
                 mesh.DrawSubset(i);
+                //device.DrawIndexedPrimitives(PrimitiveType.TriangleList,0,)
             }
 
             device.SetRenderState(RenderStates.CullMode, (int)Cull.CounterClockwise);
